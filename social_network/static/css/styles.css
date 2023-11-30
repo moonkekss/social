@@ -1,0 +1,54 @@
+/* Пример стилей для вашего веб-приложения */
+
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: bisque;
+
+}
+
+/* Стили для формы регистрации */
+#registration-form {
+    max-width: 400px;
+    margin: auto;
+}
+
+#registration-form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+#registration-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+/* Стили для ленты новостей */
+#news-feed {
+    max-width: 600px;
+    margin: auto;
+}
+
+.post {
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Стили для обмена сообщениями */
+#messages {
+    max-width: 600px;
+    margin: auto;
+}
+
+.message {
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Дополнительные стили по необходимости */

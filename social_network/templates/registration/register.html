@@ -1,0 +1,21 @@
+<!-- templates/registration/register.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
+
+</head>
+<body>
+    <h2>Регистрация</h2>
+    <form method="post" action="{% url 'register' %}" id="registration-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</body>
+</html>
