@@ -5,11 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
 </head>
 <body>
-    <h2>home</h2>
+    <header>
+        <h1>Главная страница</h1>
+
+        <p>Это главная страница </p>
+
+        <nav>
+            <a href="#">Регистрация</a>
+            <a href="#">Вход</a>
+        </nav>
+    </header>
+    <main>
+        <div class="sidebar">
+            <h3>Меню</h3> <!--- Главное Чаты Настройки Профиль !--->
+            <ul>
+                <li><a href="#">Главная страница</a></li>
+    
+                <li><a href="#">Мессенджер</a></li>
+    
+                <li><a href="#">Настройки</a></li>
+    
+                <li><a href="#">Профиль</a></li>
+    
+            </ul>
+        </div>
+
+        <div class="content">
+            <p>Здесь какой-то текст</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© Social media 2023-2023</p>
+    </footer>
 
 </body>
 </html>

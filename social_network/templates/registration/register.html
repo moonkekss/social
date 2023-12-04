@@ -7,14 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
     {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
 
 </head>
 <body>
-    <h2>Регистрация</h2>
-    <form method="post" action="{% url 'register' %}" id="registration-form">
+    
+    <form method="post" action={% url "register" %} id="registration-form">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        <h1>Регистрация</h1>
+
+        <label for="{{form.username.id_for_label}}">Имя пользователя</label>
+            {{ form.username}}
+
+        <label for="{{form.email.id_for_label}}">Почта</label>
+            {{ form.email}}
+
+        <label for="{{form.password.id_for_label}}">Пароль</label>
+            {{ form.password}}
+
         <button type="submit">Зарегистрироваться</button>
     </form>
 </body>
