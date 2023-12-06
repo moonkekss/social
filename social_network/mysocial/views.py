@@ -28,5 +28,4 @@ def user_login(request):
 
 @login_required
 def home(request):
-    print(request.user.is_authenticated)
     return render(request, 'home.html')
