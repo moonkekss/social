@@ -7,16 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
     {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
 
 </head>
 <body>
-    <h2>Вход</h2>
+    
     <form method="post" action="{% url 'login' %}" id="login-form">
         {% csrf_token %}
-        {{ form.username }}
-        {{ form.password }}
-        <button type="submit">Войти</button>
+
+        <h1>Login</h1>
+
+        <label for="{{form.username.id_for_label}}">Имя пользователя</label>
+            {{ form.username}}
+        <label for="{{form.password.id_for_label}}">Пароль</label>
+            {{ form.password}}
+        <button type="submit">Login</button>
     </form>
 </body>
 </html>
