@@ -3,20 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
 </head>
 <body>
     <header>
-        <h1>Главная страница</h1>
-
-        <p>Это главная страница </p>
-
-        <nav>
-            <a href="/accounts/register">Регистрация</a>
-            <a href="/accounts/login">Вход</a>
-        </nav>
+        <h1>Профиль {{user_profile.user.username}}</h1>
     </header>
+    <main>
+        <div class="sidebar">
+            <h3>Меню</h3> <!-- Главное Чаты Настройки Профиль !-->
+            <ul>
+                <li><a href="/home">Главная страница</a></li>
+    
+                <li><a href="#">Мессенджер</a></li>
+    
+                <li><a href="#">Настройки</a></li>
+    
+                <li><a href="/profile">Профиль</a></li>
+    
+            </ul>
+        </div>
+
+        <div class="profile">
+            <!-- avatar-->
+            <p>{{user_profile.bio}}</p>
+            <button id="editprofilebutton">Редактировать</button>
+            <div class="modelcontent" id="modelcontent">
+                
+            </div>
+        </div>
+        <div class="content">
+            <p>Здесь какой-то текст</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© Social media 2023-2023</p>
+    </footer>
+    <script>
+        document.getElementById('editprofilebutton').addEventListener('click',function(){
+            $('#modelcontent').modal('show');
+        });
+    </script>
 </body>
 </html>
