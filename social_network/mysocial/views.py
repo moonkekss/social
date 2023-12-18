@@ -41,11 +41,12 @@ def profile(request):
 
         if profile_form.is_valid():
             profile_form.save()
+            return redirect('profile')
     
     else:
         profile_form = ProfileForm(instance=user_profile)
     
-    return render(request, 'profile.html', {"profileform": profile_form, "user_profile": user_profile})
+    return render(request, 'profile.html', {"profile_form": profile_form, "user_profile": user_profile})
 
 @login_required
 def create_post(request):

@@ -6,10 +6,34 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" action="{% url 'profile' %}">
         {% csrf_token %}
-        {{profile_form.as_p}}
-        <button type="submit">Сохранить изменения</button>
+        
+        <div class="modal-header">
+            <h5 class="modal-title">Edit Profile</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            <!-- Поле для редактирования биографии -->
+            <div class="form-group">
+                <label for="id_bio">Bio:</label>
+                {{ profile_form.bio }}
+            </div>
+            
+            <!-- Поле для редактирования фотографии -->
+            <div class="form-group">
+                <label for="id_photo">Photo:</label>
+                {{ profile_form.photo }}
+            </div>
+        </div>
+    
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
     </form>
 </body>
 </html>
