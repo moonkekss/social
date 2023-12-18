@@ -132,3 +132,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 AUTH_USER_MODEL = 'mysocial.UserProfile'
+
+MEDIA_URL = '/profile_photos/'
+MEDIA_ROOT = str(BASE_DIR) + '/profile_photos/'
