@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" crossorigin="anonymous">
-   
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/profile.css' %}">
 </head>
@@ -51,7 +50,7 @@
             <div class="card mt-4">
                 <div class="card-body text-center">
                     <h5 class="card-title">Profile Details</h5>
-                    <div class="rounded-circle-container">
+                    <div class="rounded-circle-container d-flex align-items-center">
                         <img src="{{ user_profile.photo.url }}" alt="Profile Photo" class="img-fluid">
                     </div>
                     <p class="card-text mt-3"><strong>Bio:</strong> {{ user_profile.bio }}</p>
@@ -72,10 +71,6 @@
         </div>
 
         <div class="profile">
-            <p><img src="{{ user_profile.photo.url }}" class="avatar"></p>
-            <p>{{user_profile.bio}}</p>
-
-            <button id="editProfileBtn" class="btn btn-primary">Редактировать</button>
 
             <!-- Модальное окно -->
             <div class="modal" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
@@ -89,10 +84,12 @@
                 
             </div>
         </div>
-        <div class="content">
-            <p>Здесь какой-то текст</p>
-        </div>
+        
     </main>
+    
+    <div class="content"> 
+        <h1>posts</h1>
+    </div>
 
     <footer>
         <p>© Social media 2023-2023</p>
