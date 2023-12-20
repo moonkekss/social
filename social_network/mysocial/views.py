@@ -58,7 +58,7 @@ def create_post(request):
             post.user = request.user
             post.save()
 
-            return redirect('home')
+            return redirect('profile')
         
     else:
         post_form = PostForm()

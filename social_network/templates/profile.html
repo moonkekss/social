@@ -38,24 +38,36 @@
                     <h1 class="card-title">{{ user_profile.user.username }}'s Profile</h1>
                 </div>
             </div>
-    
-            <div class="card mt-4">
-                <div class="card-body">
-                    <h5 class="card-title">User Information</h5>
-                    <p class="card-text"><strong>Username:</strong> {{ user_profile.user.username }}</p>
-                    <p class="card-text"><strong>Email:</strong> {{ user_profile.user.email }}</p>
-                </div>
-            </div>
-    
-            <div class="card mt-4">
+            
+            <div class="card mt-4 d-flex align-items-center" >
                 <div class="card-body text-center">
                     <h5 class="card-title">Profile Details</h5>
-                    <div class="rounded-circle-container d-flex align-items-center">
+                    <div class="rounded-circle-container d-flex align-items-center" >
+                        {% if user_profile.photo %}
                         <img src="{{ user_profile.photo.url }}" alt="Profile Photo" class="img-fluid">
+                        {% else %}
+                        <img src="{% static '/images/default-profile.png' %}" alt="Profile Photo" class="img-fluid">
+                        {% endif %}
                     </div>
                     <p class="card-text mt-3"><strong>Bio:</strong> {{ user_profile.bio }}</p>
                 </div>
             </div>
+
+            <div class="card mt-4" >
+                <div class="card-body">
+                    <h5 class="card-title">User Information</h5>
+                    <p class="card-text"><strong>Username:</strong> {{ user_profile.user.username }}</p>
+                    <p class="card-text" id="emailBlock">
+                        <strong>Email:</strong> 
+                        <span id="hiddenEmail" style="display: none;">
+                            {{ user_profile.user.email }}
+                        </span>
+                        <button id="showEmailBtn" class="btn btn-link" onclick="toggleEmail()">Показать</button>
+                    </p>
+                </div>
+            </div>
+    
+            
     
             <button id="editProfileBtn" class="btn btn-primary mt-3">Edit Profile</button>
     
@@ -105,5 +117,7 @@
             $('#editProfileModal').modal('show');
         });
     </script>
+
+    <script src="{% static '/js/profile.js' %}" ></script>
 </body>
 </html>
