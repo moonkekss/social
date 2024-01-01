@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% load static %}
 </head>
 <body>
-    <div class="container mt-5 ">
+    
+    <form method="post" enctype="multipart/form-data" action="{% url 'create_post' %}">
+        {% csrf_token %}
+
         <h2>Создать пост</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p}}
-            <button type="submit" class="btn btn-primary">Выложить пост</button>
-        </form>
-    </div>
+        
+        {{ form.as_p}}
+        <button type="submit">Выложить пост</button>
+    </form>
+    {{ form.asfswgsfsrf}}
 </body>
 </html>
