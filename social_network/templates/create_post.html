@@ -4,18 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    {% load static %}
+    <style>
+        .modal-content  {
+            background-color: rgb(0, 0, 0);
+        }
+    </style>
 </head>
 <body>
-    
-    <form method="post" enctype="multipart/form-data" action="{% url 'create_post' %}">
+    <form method="post" enctype="multipart/form-data" action="{% url 'create_post' %}" id="create-post-form">
         {% csrf_token %}
-
-        <h2>Создать пост</h2>
+        <div modal-content>
+            <div class="modal-header">
+                <h5 class="modal-title">Создать пост</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         
-        {{ form.as_p}}
-        <button type="submit">Выложить пост</button>
+            <div class="modal-body">
+                <!-- Поле для редактирования биографии -->
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                        {{ form.title}}
+                </div>
+
+                <div class="content">
+                    <label for="title">Content:</label>
+                        {{ form.content}}
+                </div>
+
+                <div class="image">
+                    <label for="title">Image:</label>
+                        {{ form.image}}
+                </div>
+        
+    
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                <button type="submit" class="btn btn-primary">Выложить пост</button>
+            </div>
+        </div>
     </form>
-    {{ form.asfswgsfsrf}}
 </body>
 </html>

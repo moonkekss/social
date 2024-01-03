@@ -36,6 +36,8 @@ def home(request):
 def profile(request):
     user_profile = Profile.objects.get(user=request.user)
 
+    user_posts = Post.objects.filter(user=request.user)
+
     if request.method == "POST":
         profile_form = ProfileForm(request.POST, request.FILES, instance=user_profile)
 
@@ -46,7 +48,7 @@ def profile(request):
     else:
         profile_form = ProfileForm(instance=user_profile)
     
-    return render(request, 'profile.html', {"profile_form": profile_form, "user_profile": user_profile})
+    return render(request, 'profile.html', {"profile_form": profile_form, "user_profile": user_profile, "user_posts": user_posts})
 
 @login_required
 def create_post(request):

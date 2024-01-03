@@ -69,18 +69,11 @@
     
             
     
-            <button id="editProfileBtn" class="btn btn-primary mt-3">Edit Profile</button>
-    
-            <!-- Модальное окно -->
-            <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <!-- Место для формы редактирования профиля -->
-                        {% include 'edit_profile_modal.html' %}
-                    </div>
-                </div>
-            </div>
+            <button id="editProfileBtn" class="btn btn-primary mt-3">Редактировать профиль</button>
+            <button id="createPost" class="btn btn-primary mt-3">Создать пост</button>
         </div>
+
+
 
         <div class="profile">
 
@@ -96,11 +89,28 @@
                 
             </div>
         </div>
+
+        <div class="createpost">
+            <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Место для формы редактирования профиля -->
+                        {% include 'create_post.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </main>
     
     <div class="content"> 
         <h1>posts</h1>
+        {% for post in user_posts %}
+        <div class="post">
+            <h3>{{post.title}}</h3>
+            <p>{{post.content}}</p>
+        </div>
+        {% endfor %}
     </div>
 
     <footer>
@@ -116,6 +126,21 @@
         document.getElementById('editProfileBtn').addEventListener('click', function() {
             $('#editProfileModal').modal('show');
         });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#createPostForm").submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'create_post' %}",
+                    data: $("#createPostForm").serialize(),
+                    success: function(data, {
+                        $("#createPostModal").modal("hide");
+                    })
+                })
+            })
+        })
     </script>
 
     <script src="{% static '/js/profile.js' %}" ></script>
