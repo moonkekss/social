@@ -70,7 +70,7 @@
             
     
             <button id="editProfileBtn" class="btn btn-primary mt-3">Редактировать профиль</button>
-            <button id="createPost" class="btn btn-primary mt-3">Создать пост</button>
+            <button id="createPost" class="btn btn-primary mt-3" type="button" data-toggle="modal" data-target="#createPostModal">Создать пост</button>
         </div>
 
 
@@ -91,7 +91,7 @@
         </div>
 
         <div class="createpost">
-            <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+            <div class="modal fade show" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <!-- Место для формы редактирования профиля -->
@@ -135,12 +135,15 @@
                     type: "POST",
                     url: "{% url 'create_post' %}",
                     data: $("#createPostForm").serialize(),
-                    success: function(data, {
+                    success: function(data) {
                         $("#createPostModal").modal("hide");
-                    })
-                })
-            })
-        })
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            });
+        });
     </script>
 
     <script src="{% static '/js/profile.js' %}" ></script>

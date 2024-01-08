@@ -1,8 +1,12 @@
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .forms import RegistrationForm, LoginForm, ProfileForm, PostForm
-from .models import Profile, Post
+from django.views.generic.edit import CreateView 
+from .forms import RegistrationForm, LoginForm, ProfileForm, PostForm, MessageForm
+from .models import Profile, Post, Message
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def register(request):
     if request.method == 'POST':
@@ -66,3 +70,16 @@ def create_post(request):
         form = PostForm()
     
     return render(request, 'create_post.html', {"form": form})
+
+
+class SendMessageView(LoginRequiredMixin, CreateView):
+    model = Message
+    form_class = MessageForm
+    template_name = 'send_message.html'
+    success_url = "/profile/"
+
+    def form_valid(self, form):
+        form.instance.sender = self.request.user
+        self.as_view
+
+        return super().form_valid(form)

@@ -11,32 +11,34 @@
     </style>
 </head>
 <body>
-    <form method="post" enctype="multipart/form-data" action="{% url 'create_post' %}" id="create-post-form">
-        {% csrf_token %}
         <div modal-content>
             <div class="modal-header">
-                <h5 class="modal-title">Создать пост</h5>
+                <h5 class="modal-title" >Создать пост</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         
             <div class="modal-body">
-                <!-- Поле для редактирования биографии -->
-                <div class="form-group">
-                    <label for="title">Title:</label>
-                        {{ form.title}}
-                </div>
+                <form method="post" enctype="multipart/form-data" action="{% url 'create_post' %}" id="create-post-form">
+                    {% csrf_token %}
+                    
+                    <!-- Поле для редактирования биографии -->
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                            {{ form.title}}
+                    </div>
 
-                <div class="content">
-                    <label for="title">Content:</label>
-                        {{ form.content}}
-                </div>
+                    <div class="text">
+                        <label for="content">Content:</label>
+                            {{ form.content}}
+                    </div>
 
-                <div class="image">
-                    <label for="title">Image:</label>
-                        {{ form.image}}
-                </div>
+                    <div class="image">
+                        <label for="image">Image:</label>
+                            {{ form.image}}
+                    </div>
+            </form>
         
     
             <div class="modal-footer">
@@ -44,6 +46,6 @@
                 <button type="submit" class="btn btn-primary">Выложить пост</button>
             </div>
         </div>
-    </form>
+        
 </body>
 </html>
