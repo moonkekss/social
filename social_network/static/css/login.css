@@ -54,7 +54,3 @@ button:hover {
     background-color: rgb(95, 95, 95);
     text-decoration: underline;
 }
-
-.password-require {
-  margin-bottom: 100px;
-}

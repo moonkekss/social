@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create Post</title>
     <style>
-        .modal-content  {
+        .modal-content {
             background-color: rgb(0, 0, 0);
+            color: white; /* Added for better readability */
         }
     </style>
 </head>
 <body>
-    <form method="post" enctype="multipart/form-data" action="{% url 'create_post' %}" id="create-post-form">
+    <form method="post" enctype="multipart/form-data" id="create-post-form">
         {% csrf_token %}
-        <div modal-content>
+        <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Создать пост</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -22,22 +23,21 @@
             </div>
         
             <div class="modal-body">
-                <!-- Поле для редактирования биографии -->
                 <div class="form-group">
-                    <label for="title">Title:</label>
-                        {{ form.title}}
+                    <label for="id_title">Title:</label>
+                    {{ form.title }}
                 </div>
 
-                <div class="content">
-                    <label for="title">Content:</label>
-                        {{ form.content}}
+                <div class="form-group">
+                    <label for="id_content">Content:</label>
+                    {{ form.content }}
                 </div>
 
-                <div class="image">
-                    <label for="title">Image:</label>
-                        {{ form.image}}
+                <div class="form-group">
+                    <label for="id_image">Image:</label>
+                    {{ form.image }}
                 </div>
-        
+            </div>
     
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
@@ -45,5 +45,6 @@
             </div>
         </div>
     </form>
+
 </body>
 </html>

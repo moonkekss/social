@@ -70,7 +70,10 @@
             
     
             <button id="editProfileBtn" class="btn btn-primary mt-3">Редактировать профиль</button>
-            <button id="createPost" class="btn btn-primary mt-3">Создать пост</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPostModal">
+                Создать пост
+            </button>
+
         </div>
 
 
@@ -91,11 +94,36 @@
         </div>
 
         <div class="createpost">
-            <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="createPostModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <!-- Место для формы редактирования профиля -->
-                        {% include 'create_post.html' %}
+                        <form method="post" enctype="multipart/form-data" id="create-post-form">
+                            {% csrf_token %}
+                            <div class="modal-header">
+                                <h5 class="modal-title">Создать пост</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="id_title">Title:</label>
+                                    {{ post_form.title }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_content">Content:</label>
+                                    {{ post_form.content }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_image">Image:</label>
+                                    {{ post_form.image }}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                <button type="submit" class="btn btn-primary">Выложить пост</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -117,30 +145,44 @@
         <p>© Social media 2023-2023</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"  crossorigin="anonymous"></script>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
     <script>
         document.getElementById('editProfileBtn').addEventListener('click', function() {
             $('#editProfileModal').modal('show');
         });
     </script>
+
     <script>
         $(document).ready(function(){
-            $("#createPostForm").submit(function(e){
+            $("#create-post-form").submit(function(e){
                 e.preventDefault();
+                var formData = new FormData(this);
+                formData.append('post', 'true');  // Add an identifier for the post creation
                 $.ajax({
                     type: "POST",
-                    url: "{% url 'create_post' %}",
-                    data: $("#createPostForm").serialize(),
-                    success: function(data, {
-                        $("#createPostModal").modal("hide");
-                    })
-                })
-            })
-        })
+                    url: "{% url 'profile' %}",  // Ensure this is the correct URL for profile view
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        if (data.status === 'success') {
+                            // Close the modal and potentially refresh parts of your page
+                            $('#createPostModal').modal('hide');
+                        } else {
+                            // Handle the case where the server did not return success
+                            console.error('Failed to create the post.');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle submission errors here
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
     </script>
 
     <script src="{% static '/js/profile.js' %}" ></script>

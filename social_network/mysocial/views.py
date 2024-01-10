@@ -3,6 +3,7 @@ from django.contrib.auth import login
 from .forms import RegistrationForm, LoginForm, ProfileForm, PostForm
 from .models import Profile, Post
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 def register(request):
     if request.method == 'POST':
@@ -35,34 +36,33 @@ def home(request):
 @login_required
 def profile(request):
     user_profile = Profile.objects.get(user=request.user)
-
     user_posts = Post.objects.filter(user=request.user)
+    post_form = PostForm()  # Initialize your PostForm here
 
     if request.method == "POST":
-        profile_form = ProfileForm(request.POST, request.FILES, instance=user_profile)
-
-        if profile_form.is_valid():
-            profile_form.save()
-            return redirect('profile')
-    
+        # Check if the POST request is for profile update
+        if 'profile' in request.POST:
+            profile_form = ProfileForm(request.POST, request.FILES, instance=user_profile)
+            if profile_form.is_valid():
+                profile_form.save()
+                return redirect('profile')
+        # Check if the POST request is for post creation
+        elif 'post' in request.POST:
+            post_form = PostForm(request.POST, request.FILES)
+            if post_form.is_valid():
+                post = post_form.save(commit=False)
+                post.user = request.user
+                post.save()
+                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                    return JsonResponse({'status': 'success'})
+                return redirect('profile')
     else:
         profile_form = ProfileForm(instance=user_profile)
-    
-    return render(request, 'profile.html', {"profile_form": profile_form, "user_profile": user_profile, "user_posts": user_posts})
 
-@login_required
-def create_post(request):
-    if request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
-
-            return redirect('profile')
-        
-    else:
-        form = PostForm()
-    
-    return render(request, 'create_post.html', {"form": form})
+    context = {
+        "profile_form": profile_form,
+        "post_form": post_form,  # Pass 'post_form' to the template context
+        "user_profile": user_profile,
+        "user_posts": user_posts
+    }
+    return render(request, 'profile.html', context)
