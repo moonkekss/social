@@ -109,3 +109,23 @@ footer {
     height: 100%;
     object-fit: cover;
 }
+
+.post-image {
+    height: 25%;
+    width: 25%;
+}
+
+.post {
+    margin-top: 10px;
+    text-align: left;
+    background-color: rgb(86, 86, 86);
+    margin-bottom: 10px;
+    margin-right: 100px;
+    margin-left: 100px;
+    padding: 10px;
+}
+
+.post h1 {
+    font-weight: bolder;
+    text-align: center;
+}

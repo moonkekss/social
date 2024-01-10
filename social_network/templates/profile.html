@@ -70,9 +70,7 @@
             
     
             <button id="editProfileBtn" class="btn btn-primary mt-3">Редактировать профиль</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPostModal">
-                Создать пост
-            </button>
+            <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#createPostModal">Создать пост</button>
         </div>
 
 
@@ -131,11 +129,14 @@
     </main>
     
     <div class="content"> 
-        <h1>posts</h1>
         {% for post in user_posts %}
         <div class="post">
-            <h3>{{post.title}}</h3>
-            <p>{{post.content}}</p>
+            <h1>{{post.title}}</h1>
+                
+            <h4>{{post.content}}</h4>
+            {% if post.image %} 
+            <img src="{{post.image.url}}" class="post-image">
+            {% endif %}
         </div>
         {% endfor %}
     </div>

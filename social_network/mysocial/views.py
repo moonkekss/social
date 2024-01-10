@@ -69,3 +69,33 @@ def profile(request):
         "user_posts": user_posts
     }
     return render(request, 'profile.html', context)
+
+@login_required
+def send_message(request):
+    if request.method == "POST":
+        form = MessageForm(request.POST )
+
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = request.user
+            message.save()
+            
+            return redirect('profile')
+        
+    else:
+        form = MessageForm()
+    return render(request, 'send_message.html', {"form": form})
+
+@login_required
+def inbox(request):
+    messages = Message.objects.filter(recevier=request.user).order_by("-date_sent")
+
+    return render(request, 'inbox.html', {"messages": messages})
+
+@login_required
+def read_message(request, message_id):
+    message = get_object_or_404(Message, id=message_id, receiver=request.user)
+    message.is_read = True  
+    message.save()
+
+    return render(request, 'read_message.html', {"message": message})

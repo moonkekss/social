@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.conf import settings
 
 class UserProfile(AbstractUser):
     email = models.EmailField(unique = True)
@@ -48,7 +49,12 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 class Message(models.Model):
-    sender = models.ForeignKey(UserProfile, related_name="sent_messages", on_delete=models.CASCADE)
-    receiver = models.ForeignKey(UserProfile, related_name="recived_messages", on_delete=models.CASCADE)
-    content = models.TextField()
-    timestamp = models.DateTimeField(auto_now_add=True)
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="sent_messages", on_delete=models.CASCADE)
+    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="recived_messages", on_delete=models.CASCADE)
+    subject = models.CharField(max_length=50)
+    body = models.TextField()
+    date_sent = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"От {self.sender}\nКому {self.receiver}\n\n{self.subject}"
