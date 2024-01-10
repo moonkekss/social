@@ -46,4 +46,9 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=UserProfile)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-    
+
+class Message(models.Model):
+    sender = models.ForeignKey(UserProfile, related_name="sent_messages", on_delete=models.CASCADE)
+    receiver = models.ForeignKey(UserProfile, related_name="recived_messages", on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
