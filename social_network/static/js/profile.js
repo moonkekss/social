@@ -1,15 +1,12 @@
 function toggleEmail() {
-    var emailBlock = document.getElementById("emailBlock");
-    var hiddenEmail = document.getElementById("hiddenEmail");
-    var showEmailBtn = document.getElementById("showEmailBtn");
+    const hiddenEmail = document.getElementById("hiddenEmail");
+    const showEmailBtn = document.getElementById("showEmailBtn");
 
     if (hiddenEmail.style.display === "none") {
         hiddenEmail.style.display = "inline";
-        showEmailBtn.innerText = "Скрыть";
-    }
-
-    else {
+        showEmailBtn.textContent = "Скрыть";
+    } else {
         hiddenEmail.style.display = "none";
-        showEmailBtn.innerHTML = "Показать";
+        showEmailBtn.textContent = "Показать";
     }
 }
