@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Почта</h1>
+    </header>
+    <main>
+        <div class="sidebar">
+            <h3>Меню</h3> <!-- Главное Чаты Настройки Профиль !-->
+            <ul>
+                <li><a href="{% url 'home' %}">Главная страница</a></li>
+    
+                <li><a href="#">Мессенджер</a></li>
+    
+                <li><a href="#">Настройки</a></li>
+    
+                <li><a href="{% url 'profile' %}">Профиль</a></li>
+    
+            </ul>
+        </div>
+
+        <div class="content">
+            {% if messages %}
+            <div class="inbox">
+                {% for message in messages %}
+                <div class="message">
+                    <h2>От: {{message.sender.username}}</h2>
+                    <p><strong>Тема:</strong> {{message.subject}}</p>
+                    <p><strong>Получено:</strong> {{message.date_sent|date:"F d,Y H:i"}}</p>
+                    <a href="{% url 'read_message' message.id %}">Прочитать сообщение</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>У вас нету сообщений</p>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <p>© Social media 2023-2023</p>
+    </footer>
+
+</body>
+</html>

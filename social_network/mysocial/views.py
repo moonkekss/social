@@ -1,12 +1,13 @@
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.views.generic.edit import CreateView 
 from .forms import RegistrationForm, LoginForm, ProfileForm, PostForm, MessageForm
 from .models import Profile, Post, Message
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+
 
 def register(request):
     if request.method == 'POST':
@@ -88,7 +89,7 @@ def send_message(request):
 
 @login_required
 def inbox(request):
-    messages = Message.objects.filter(recevier=request.user).order_by("-date_sent")
+    messages = Message.objects.filter(receiver=request.user).order_by("-date_sent")
 
     return render(request, 'inbox.html', {"messages": messages})
 
