@@ -1,46 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>home</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap"
+      rel="stylesheet"
+    />
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static '/css/home.css' %}"
+    />
+  </head>
+  <body>
     <header>
-        <h1>Главная страница</h1>
+      <h1>Главная страница</h1>
 
-        <p>Это главная страница </p>
+      <p>Это главная страница</p>
     </header>
     <main>
-        <div class="sidebar">
-            <h3>Меню</h3> <!-- Главное Чаты Настройки Профиль !-->
-            <ul>
-                <li><a href="{% url 'home' %}">Главная страница</a></li>
-    
-                <li><a href="{% url 'inbox' %}">Мессенджер</a></li>
-    
-                <li><a href="#">Настройки</a></li>
-    
-                <li><a href="{% url 'profile' %}">Профиль</a></li>
-    
-            </ul>
-        </div>
+      <div class="sidebar">
+        <h3>Меню</h3>
+        <!-- Главное Чаты Настройки Профиль !-->
+        <ul>
+          <li><a href="{% url 'home' %}">Главная страница</a></li>
 
-        <div class="content">
-            <p>Здесь какой-то текст</p>
-        </div>
+          <li><a href="{% url 'inbox' %}">Мессенджер</a></li>
+
+          <li><a href="#">Настройки</a></li>
+
+          <li><a href="{% url 'profile' %}">Профиль</a></li>
+          <li>
+            <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                {% csrf_token %}
+                <a href="#" onclick="document.getElementById('logout-form').submit();">Выйти</a>
+            </form>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content">
+        <p>Здесь какой-то текст</p>
+      </div>
     </main>
 
     <footer>
-        <p>© Social media 2023-2023</p>
+      <p>© Social media 2023-2023</p>
     </footer>
-
-</body>
+  </body>
 </html>

@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static '/css/read_message.css' %}">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static '/css/read_message.css' %}"
+    />
+  </head>
+  <body>
     <h1>Сообщение</h1>
     {% if message %}
     <div class="message-details">
-        <a href="{% url 'inbox' %}" class="back">←</a>
-        <div class="message-header">
-            <h2>От: {{message.sender.username}}</h2>
-            <p><strong>Тема:</strong> {{message.subject}}</p>
-            <p><strong>Получено:</strong> {{message.date_sent|date:"F d,Y H:i"}}</p>
-        </div>
-        <div class="message-body">
-            <p>{{message.body}}</p>
-        </div>
+      <a href="{% url 'inbox' %}" class="back">←</a>
+      <div class="message-header">
+        <h2>От: {{message.sender.username}}</h2>
+        <p><strong>Тема:</strong> {{message.subject}}</p>
+        <p><strong>Получено:</strong> {{message.date_sent|date:"F d,Y H:i"}}</p>
+      </div>
+      <div class="message-body">
+        <p>{{message.body}}</p>
+      </div>
     </div>
     {% else %}
     <p>Сообщение не найдено</p>
     {% endif %}
-</body>
+  </body>
 </html>

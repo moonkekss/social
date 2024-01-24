@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static '/css/login.css' %}"
+    />
     <style>
-        textarea {
-            resize: none;
-        }
+      textarea {
+        resize: none;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <form method="post" action="{% url 'send_message' %}">
-        {% csrf_token %}
-        {{ form.as_p}}
+      {% csrf_token %} {{ form.as_p}}
 
-        <button type="submit">Отправить сообщение</button>
+      <button type="submit">Отправить сообщение</button>
     </form>
-</body>
+  </body>
 </html>

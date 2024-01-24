@@ -1,135 +1,135 @@
 * {
-    margin: 0;
+  margin: 0;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    padding: 0;
-    background-color: rgb(37, 37, 37);
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  background-color: rgb(37, 37, 37);
 }
 
 header {
-    background-color: rgb(63, 63, 63);
-    color: white;
-    padding: 10px;
-    text-align: center;
+  background-color: rgb(63, 63, 63);
+  color: white;
+  padding: 10px;
+  text-align: center;
 }
 
 header h1 {
-    font-size: 60px;
-    font-weight: bold;
-    font-family: 'Inter';
+  font-size: 60px;
+  font-weight: bold;
+  font-family: "Inter";
 }
 
 header p {
-    font-size: 24px;
-    font-family: 'Nunito';
+  font-size: 24px;
+  font-family: "Nunito";
 }
 
 header nav {
-    background-color: rgb(53, 52, 52);
+  background-color: rgb(53, 52, 52);
 }
 
 header nav a {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 }
 
 header nav a:hover {
-    color: rgb(180, 180, 180);
-    text-decoration: underline;
+  color: rgb(180, 180, 180);
+  text-decoration: underline;
 }
 
 main {
-    color: white;
-    display: flex;
-    position: relative;
+  color: white;
+  display: flex;
+  position: relative;
 }
 
 .content {
-    text-align: center;
-    color: white;
+  text-align: center;
+  color: white;
 }
 
 .sidebar {
-    text-align: center;
-    width: 300px;
-    height: 82vh;
-    box-sizing: border-box;
-    border: 3px solid black;
-    background-color: rgb(53, 53, 53);
-    color: white;
+  text-align: center;
+  width: 300px;
+  height: 82vh;
+  box-sizing: border-box;
+  border: 3px solid black;
+  background-color: rgb(53, 53, 53);
+  color: white;
 }
 
 .sidebar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .sidebar li a {
-    text-decoration: none;
-    color: rgb(0, 255, 13);
+  text-decoration: none;
+  color: rgb(0, 255, 13);
 }
 
 .sidebar li a:hover {
-    text-decoration: underline;
-    color: rgb(0, 163, 8)
+  text-decoration: underline;
+  color: rgb(0, 163, 8);
 }
 
 footer {
-    background-color: rgb(63, 63, 63);
-    height: 100px;
-    color: white;
-    margin-top: 10px;
-    border-top: 2px solid black;
-    text-align: left;
-    padding-left: 250px;
+  background-color: rgb(63, 63, 63);
+  height: 100px;
+  color: white;
+  margin-top: 10px;
+  border-top: 2px solid black;
+  text-align: left;
+  padding-left: 250px;
 }
 
 .card {
-    color: white;
-    background-color: rgb(49, 49, 49);
+  color: white;
+  background-color: rgb(49, 49, 49);
 }
 
 .card h5 {
-    font-weight: 900;
+  font-weight: 900;
 }
 
 .rounded-circle-container {
-    width: 150px;
-    height: 150px;
-    overflow: hidden;
-    border-radius: 50%;
-    margin-left: 30px;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-left: 30px;
 }
 
 .rounded-circle-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .post-image {
-    height: 25%;
-    width: 25%;
+  height: 25%;
+  width: 25%;
 }
 
 .post {
-    margin-top: 10px;
-    text-align: left;
-    background-color: rgb(86, 86, 86);
-    margin-bottom: 10px;
-    margin-right: 100px;
-    margin-left: 100px;
-    padding: 10px;
+  margin-top: 10px;
+  text-align: left;
+  background-color: rgb(86, 86, 86);
+  margin-bottom: 10px;
+  margin-right: 100px;
+  margin-left: 100px;
+  padding: 10px;
 }
 
 .post h1 {
-    font-weight: bolder;
-    text-align: center;
+  font-weight: bolder;
+  text-align: center;
 }
 
 textarea {
-    resize: none;
+  resize: none;
 }

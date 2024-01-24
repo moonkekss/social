@@ -1,125 +1,124 @@
 * {
-    margin: 0;
+  margin: 0;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    padding: 0;
-    background-color: rgb(37, 37, 37);
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  background-color: rgb(37, 37, 37);
 }
 
 header {
-    background-color: rgb(63, 63, 63);
-    color: white;
-    padding: 10px;
-    text-align: center;
+  background-color: rgb(63, 63, 63);
+  color: white;
+  padding: 10px;
+  text-align: center;
 }
 
 header h1 {
-    font-size: 60px;
-    font-weight: bold;
-    font-family: 'Inter';
+  font-size: 60px;
+  font-weight: bold;
+  font-family: "Inter";
 }
 
 header p {
-    font-size: 24px;
-    font-family: 'Nunito';
+  font-size: 24px;
+  font-family: "Nunito";
 }
 
 header nav {
-    background-color: rgb(53, 52, 52);
+  background-color: rgb(53, 52, 52);
 }
 
 header nav a {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 }
 
 header nav a:hover {
-    color: rgb(180, 180, 180);
-    text-decoration: underline;
+  color: rgb(180, 180, 180);
+  text-decoration: underline;
 }
 
 main {
-    color: white;
-    display: flex;
-    position: relative;
+  color: white;
+  display: flex;
+  position: relative;
 }
 
 .content {
-    flex: 1;
+  flex: 1;
 
-    text-align: left;
-
+  text-align: left;
 }
 
 .sidebar {
-    text-align: center;
-    width: 300px;
-    height: 82vh;
-    box-sizing: border-box;
-    border: 3px solid black;
-    background-color: rgb(53, 53, 53);
-    color: white;
+  text-align: center;
+  width: 300px;
+  height: 82vh;
+  box-sizing: border-box;
+  border: 3px solid black;
+  background-color: rgb(53, 53, 53);
+  color: white;
 }
 
 .sidebar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .sidebar li a {
-    text-decoration: none;
-    color: rgb(0, 255, 13);
+  text-decoration: none;
+  color: rgb(0, 255, 13);
 }
 
 .sidebar li a:hover {
-    text-decoration: underline;
-    color: rgb(0, 163, 8)
+  text-decoration: underline;
+  color: rgb(0, 163, 8);
 }
 
 footer {
-    background-color: rgb(63, 63, 63);
-    height: 100px;
-    color: white;
-    margin-top: 10px;
-    border-top: 2px solid black;
-    text-align: left;
-    padding-left: 250px;
+  background-color: rgb(63, 63, 63);
+  height: 100px;
+  color: white;
+  margin-top: 10px;
+  border-top: 2px solid black;
+  text-align: left;
+  padding-left: 250px;
 }
 
 .message a {
-    color: rgb(0, 174, 255);
+  color: rgb(0, 174, 255);
 }
 
 .message {
-    border: black 5px solid;
-    border-radius: 5px;
-    background-color: rgb(58, 58, 58);
-    margin: 10px;
-    padding: 10px;
+  border: black 5px solid;
+  border-radius: 5px;
+  background-color: rgb(58, 58, 58);
+  margin: 10px;
+  padding: 10px;
 }
 
 .new-message {
-    position: fixed;
-    bottom: 100px;
-    z-index: 1000;
-    right: 25px;
-    background-color: rgb(116, 116, 0);
-    border-radius: 50%;
-    border: 1px yellow solid;
+  position: fixed;
+  bottom: 100px;
+  z-index: 1000;
+  right: 25px;
+  background-color: rgb(116, 116, 0);
+  border-radius: 50%;
+  border: 1px yellow solid;
 }
 
 .new-message button {
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    cursor: pointer;
-    border: none;
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    font-size: 36px;
-    background: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  font-size: 36px;
+  background: none;
 }
