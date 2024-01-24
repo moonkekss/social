@@ -23,3 +23,13 @@ h1 {
     word-wrap: break-word;
     white-space: pre-wrap;
 }
+
+.back {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+}
+
+.back:hover {
+    color: rgb(197, 197, 197);
+}

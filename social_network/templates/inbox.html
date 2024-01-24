@@ -22,7 +22,7 @@
             <ul>
                 <li><a href="{% url 'home' %}">Главная страница</a></li>
     
-                <li><a href="#">Мессенджер</a></li>
+                <li><a href="{% url 'inbox' %}">Мессенджер</a></li>
     
                 <li><a href="#">Настройки</a></li>
     
@@ -46,6 +46,10 @@
             {% else %}
             <p>У вас нету сообщений</p>
             {% endif %}
+        </div>
+
+        <div class="new-message">
+            <button onclick='location.href="/send_message"'>+</button>
         </div>
     </main>
 

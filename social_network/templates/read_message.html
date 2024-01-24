@@ -11,6 +11,7 @@
     <h1>Сообщение</h1>
     {% if message %}
     <div class="message-details">
+        <a href="{% url 'inbox' %}" class="back">←</a>
         <div class="message-header">
             <h2>От: {{message.sender.username}}</h2>
             <p><strong>Тема:</strong> {{message.subject}}</p>

@@ -48,11 +48,9 @@ main {
 
 .content {
     flex: 1;
-    position: absolute;
-    text-align: center;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+
+    text-align: left;
+
 }
 
 .sidebar {
@@ -93,4 +91,35 @@ footer {
 
 .message a {
     color: rgb(0, 174, 255);
+}
+
+.message {
+    border: black 5px solid;
+    border-radius: 5px;
+    background-color: rgb(58, 58, 58);
+    margin: 10px;
+    padding: 10px;
+}
+
+.new-message {
+    position: fixed;
+    bottom: 100px;
+    z-index: 1000;
+    right: 25px;
+    background-color: rgb(116, 116, 0);
+    border-radius: 50%;
+    border: 1px yellow solid;
+}
+
+.new-message button {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 36px;
+    background: none;
 }

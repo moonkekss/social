@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
 </head>
 <body>
     <form method="post" action="{% url 'send_message' %}">

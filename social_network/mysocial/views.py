@@ -40,7 +40,7 @@ def home(request):
 @login_required
 def profile(request):
     user_profile = Profile.objects.get(user=request.user)
-    user_posts = Post.objects.filter(user=request.user)
+    user_posts = Post.objects.filter(user=request.user).order_by("-created_at")
     post_form = PostForm()  # Initialize your PostForm here
 
     if request.method == "POST":
@@ -81,7 +81,7 @@ def send_message(request):
             message.sender = request.user
             message.save()
             
-            return redirect('profile')
+            return redirect('inbox')
         
     else:
         form = MessageForm()
