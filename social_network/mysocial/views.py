@@ -34,15 +34,16 @@ def user_login(request):
 
 @login_required
 def home(request):
-    posts = Post.objects.all().order_by('-created_at')
-    return render(request, 'home.html', {"posts": posts})
+    random_posts = Post.objects.exclude(user=request.user).order_by("?")[:15]
+    return render(request, 'home.html', {"random_posts": random_posts})
 
 @login_required
 def profile(request):
     user_profile = Profile.objects.get(user=request.user)
     user_posts = Post.objects.filter(user=request.user).order_by("-created_at")
     post_form = PostForm()  # Initialize your PostForm here
-
+    profile_form = ProfileForm(instance=user_profile)
+    
     if request.method == "POST":
         # Check if the POST request is for profile update
         if 'profile' in request.POST:
@@ -50,6 +51,8 @@ def profile(request):
             if profile_form.is_valid():
                 profile_form.save()
                 return redirect('profile')
+            else:
+                print(profile_form.errors)
         # Check if the POST request is for post creation
         elif 'post' in request.POST:
             post_form = PostForm(request.POST, request.FILES)
@@ -60,8 +63,8 @@ def profile(request):
                 if request.headers.get('x-requested-with') == 'XMLHttpRequest':
                     return JsonResponse({'status': 'success'})
                 return redirect('profile')
-    else:
-        profile_form = ProfileForm(instance=user_profile)
+            else:
+                print(post_form.errors)
 
     context = {
         "profile_form": profile_form,
