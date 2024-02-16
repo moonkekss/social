@@ -32,7 +32,7 @@
   </head>
   <body>
     <header>
-      <h1>Профиль {{user_profile.user.username}}</h1>
+      <h1>Профиль {{profile_user.username}}</h1>
     </header>
     <main>
       <div class="sidebar">
@@ -43,7 +43,7 @@
 
           <li><a href="{% url 'inbox' %}">Мессенджер</a></li>
 
-          <li><a href="{% url 'users' %}">Пользователи</a></li>
+          <li><a href="#">Пользователи</a></li>
 
           <li><a href="{% url 'profile' %}">Профиль</a></li>
           <li>
@@ -59,7 +59,7 @@
         <div class="card">
           <div class="card-body text-center">
             <h1 class="card-title">
-              {{ user_profile.user.username }}'s Profile
+              {{ profile_user.username }}'s Profile
             </h1>
           </div>
         </div>
@@ -68,9 +68,9 @@
           <div class="card-body text-center">
             <h5 class="card-title">Profile Details</h5>
             <div class="rounded-circle-container d-flex align-items-center">
-              {% if user_profile.photo %}
+              {% if profile.photo %}
               <img
-                src="{{ user_profile.photo.url }}"
+                src="{{ profile.photo.url }}"
                 alt="Profile Photo"
                 class="img-fluid"
               />
@@ -83,128 +83,18 @@
               {% endif %}
             </div>
             <p class="card-text mt-3">
-              <strong>Bio:</strong> {{ user_profile.bio }}
+              <strong>Bio:</strong> {{ profile.bio }}
             </p>
           </div>
         </div>
 
-        <div class="card mt-4">
-          <div class="card-body">
-            <h5 class="card-title">User Information</h5>
-            <p class="card-text">
-              <strong>Username:</strong> {{ user_profile.user.username }}
-            </p>
-            <p class="card-text" id="emailBlock">
-              <strong>Email:</strong>
-              <span id="hiddenEmail" style="display: none">
-                {{ user_profile.user.email }}
-              </span>
-              <button
-                id="showEmailBtn"
-                class="btn btn-link"
-                onclick="toggleEmail()"
-              >
-                Показать
-              </button>
-            </p>
-          </div>
-        </div>
-
-        <button id="editProfileBtn" class="btn btn-primary mt-3">
-          Редактировать профиль
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary mt-3"
-          data-toggle="modal"
-          data-target="#createPostModal"
-        >
-          Создать пост
-        </button>
-      </div>
-
-      <div class="profile">
-        <!-- Модальное окно -->
-        <div
-          class="modal"
-          id="editProfileModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="editProfileModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <!-- Место для формы редактирования профиля -->
-              {% include 'edit_profile_modal.html' %}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="createpost">
-        <div
-          class="modal fade"
-          id="createPostModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="createPostModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <form
-                method="post"
-                enctype="multipart/form-data"
-                id="create-post-form"
-              >
-                {% csrf_token %}
-                <div class="modal-header">
-                  <h5 class="modal-title">Создать пост</h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <div class="form-group">
-                    <label for="id_title">Title:</label>
-                    {{ post_form.title }}
-                  </div>
-                  <div class="form-group">
-                    <label for="id_content">Content:</label>
-                    {{ post_form.content }}
-                  </div>
-                  <div class="form-group">
-                    <label for="id_image">Image:</label>
-                    {{ post_form.image }}
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal"
-                  >
-                    Закрыть
-                  </button>
-                  <button type="submit" class="btn btn-primary">
-                    Выложить пост
-                  </button>
-                </div>
-              </form>
-            </div>
           </div>
         </div>
       </div>
     </main>
 
     <div class="content">
-      {% for post in user_posts %}
+      {% for post in posts %}
       <div class="post">
         <h1>{{post.title}}</h1>
 

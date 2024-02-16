@@ -27,7 +27,9 @@
   </head>
   <body>
     <header>
-      <h1>Почта</h1>
+      <h1>Главная страница</h1>
+
+      <p>Это главная страница</p>
     </header>
     <main>
       <div class="sidebar">
@@ -38,7 +40,7 @@
 
           <li><a href="{% url 'inbox' %}">Мессенджер</a></li>
 
-          <li><a href="{% url 'users' %}">Пользователи</a></li>
+          <li><a href="#">Пользователи</a></li>
 
           <li><a href="{% url 'profile' %}">Профиль</a></li>
           <li>
@@ -51,28 +53,13 @@
       </div>
 
       <div class="content">
-        {% if messages %}
-        <div class="inbox">
-          {% for message in messages %}
-          <div class="message">
-            <h2>От: {{message.sender.username}}</h2>
-            <p><strong>Тема:</strong> {{message.subject}}</p>
-            <p>
-              <strong>Получено:</strong> {{message.date_sent|date:"F d,Y H:i"}}
-            </p>
-            <a href="{% url 'read_message' message.id %}"
-              >Прочитать сообщение</a
-            >
-          </div>
-          {% endfor %}
-        </div>
-        {% else %}
-        <p>У вас нету сообщений</p>
-        {% endif %}
-      </div>
-
-      <div class="new-message">
-        <button onclick='location.href="/send_message"'>+</button>
+        <ul>
+            {% for user in users %}
+            <div class="post">
+                <li><img src="{{ user.photo.url }}"><a href="{% url 'view_profile' username=user.username %}">{{user.username}}</a></li>
+            </div>
+            {% endfor %}
+        </ul>
       </div>
     </main>
 

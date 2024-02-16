@@ -1,10 +1,10 @@
 from django.forms.models import BaseModelForm
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.views.generic.edit import CreateView 
 from .forms import RegistrationForm, LoginForm, ProfileForm, PostForm, MessageForm
-from .models import Profile, Post, Message
+from .models import Profile, Post, Message, UserProfile
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
@@ -37,42 +37,60 @@ def home(request):
     random_posts = Post.objects.exclude(user=request.user).order_by("?")[:15]
     return render(request, 'home.html', {"random_posts": random_posts})
 
-@login_required
-def profile(request):
-    user_profile = Profile.objects.get(user=request.user)
-    user_posts = Post.objects.filter(user=request.user).order_by("-created_at")
-    post_form = PostForm()  # Initialize your PostForm here
-    profile_form = ProfileForm(instance=user_profile)
-    
-    if request.method == "POST":
-        # Check if the POST request is for profile update
-        if 'profile' in request.POST:
-            profile_form = ProfileForm(request.POST, request.FILES, instance=user_profile)
-            if profile_form.is_valid():
-                profile_form.save()
-                return redirect('profile')
-            else:
-                print(profile_form.errors)
-        # Check if the POST request is for post creation
-        elif 'post' in request.POST:
-            post_form = PostForm(request.POST, request.FILES)
-            if post_form.is_valid():
-                post = post_form.save(commit=False)
-                post.user = request.user
-                post.save()
-                if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                    return JsonResponse({'status': 'success'})
-                return redirect('profile')
-            else:
-                print(post_form.errors)
-
-    context = {
-        "profile_form": profile_form,
-        "post_form": post_form,  # Pass 'post_form' to the template context
-        "user_profile": user_profile,
-        "user_posts": user_posts
-    }
+@login_required 
+def profile(request): 
+    user_profile = Profile.objects.get(user=request.user) 
+    user_posts = Post.objects.filter(user=request.user).order_by("-created_at") 
+    post_form = PostForm() 
+    profile_form = ProfileForm(instance=user_profile) 
+ 
+    if request.method == "POST": 
+        if 'action' in request.POST and request.POST['action'] == 'update_profile': 
+            profile_form = ProfileForm(request.POST, request.FILES, instance=user_profile) 
+            if profile_form.is_valid(): 
+                profile_form.save() 
+                return redirect('profile') 
+            else: 
+                print(profile_form.errors) 
+        elif 'action' in request.POST and request.POST['action'] == 'create_post': 
+            post_form = PostForm(request.POST, request.FILES) 
+            if post_form.is_valid(): 
+                post = post_form.save(commit=False) 
+                post.user = request.user 
+                post.save() 
+                return {"sucsess": True}
+            else: 
+                print(post_form.errors) 
+ 
+    context = { 
+        "profile_form": profile_form, 
+        "post_form": post_form, 
+        "user_profile": user_profile, 
+        "user_posts": user_posts 
+    } 
     return render(request, 'profile.html', context)
+
+@login_required
+def delete_post(request: HttpRequest, post_id):
+    post = get_object_or_404(Post,pk=post_id,user=request.user)
+    if request.method == "POST":
+        post.delete()
+        return redirect("profile")
+    else:
+        return redirect("profile")
+    
+
+def view_profile(request: HttpRequest, username):
+    user = get_object_or_404(UserProfile, username=username)
+    posts = Post.objects.filter(user=user).order_by("-created_at")
+    profile = user.profile
+    return render(request, "user_profile.html", {"profile_user": user, "posts": posts, "profile": profile})
+
+def users_list(request: HttpRequest):
+    users = UserProfile.objects.all()
+
+    return render(request, "users_list.html", {"users": users})
+
 
 @login_required
 def send_message(request):

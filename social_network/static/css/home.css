@@ -142,3 +142,17 @@ footer {
   font-weight: bolder;
   text-align: center;
 }
+
+.content ul {
+  list-style-type: none;
+}
+
+.content li a {
+  text-decoration: none;
+  color: rgb(0, 255, 13);
+}
+
+.content li a:hover {
+  text-decoration: underline;
+  color: rgb(0, 163, 8);
+}
